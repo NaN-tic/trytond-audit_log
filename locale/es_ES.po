@@ -1,0 +1,79 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:ir.audit.log,changes:"
+msgid "Changes"
+msgstr "Cambios"
+
+msgctxt "field:ir.audit.log,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:ir.audit.log,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:ir.audit.log,date:"
+msgid "Date & Hour"
+msgstr "Fecha y hora"
+
+msgctxt "field:ir.audit.log,history:"
+msgid "History"
+msgstr "Historial"
+
+msgctxt "field:ir.audit.log,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:ir.audit.log,model:"
+msgid "Model"
+msgstr "Modelo"
+
+msgctxt "field:ir.audit.log,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:ir.audit.log,type:"
+msgid "Event Type"
+msgstr "Tipo evento"
+
+msgctxt "field:ir.audit.log,user:"
+msgid "User"
+msgstr "Usuario"
+
+msgctxt "field:ir.audit.log,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:ir.audit.log,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "model:ir.action,name:act_ir_audit_log"
+msgid "Audit Log"
+msgstr "Registro Auditoria"
+
+msgctxt "model:ir.audit.log,name:"
+msgid "Audit Log"
+msgstr "Registro Auditoria"
+
+msgctxt "model:ir.ui.menu,name:menu_ir_audit_log"
+msgid "Audit Log"
+msgstr "Registro Auditoria"
+
+msgctxt "selection:ir.audit.log,type:"
+msgid "Create"
+msgstr "Creación"
+
+msgctxt "selection:ir.audit.log,type:"
+msgid "Delete"
+msgstr "Eliminación"
+
+msgctxt "selection:ir.audit.log,type:"
+msgid "Write"
+msgstr "Modificación"
+
+msgctxt "view:ir.audit.log:"
+msgid "Audit Log"
+msgstr "Registro Auditoria"

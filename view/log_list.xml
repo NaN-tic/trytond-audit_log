@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tree string="Audit Log">
+    <field name="date"/>
+    <field name="user"/>
+    <field name="type"/>
+    <field name="model"/>
+</tree>

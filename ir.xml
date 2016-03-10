@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tryton>
+    <data>
+
+        <record model="ir.ui.view" id="ir_audit_log_view_form">
+            <field name="model">ir.audit.log</field>
+            <field name="type">form</field>
+            <field name="name">log_form</field>
+        </record>
+        <record model="ir.ui.view" id="ir_audit_log_view_list">
+            <field name="model">ir.audit.log</field>
+            <field name="type">tree</field>
+            <field name="name">log_list</field>
+        </record>
+        <record model="ir.action.act_window" id="act_ir_audit_log">
+            <field name="name">Audit Log</field>
+            <field name="res_model">ir.audit.log</field>
+            <field name="search_value">[('date', '>=', DateTime(delta_hours=-24))]</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_ir_audit_log_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="ir_audit_log_view_list"/>
+            <field name="act_window" ref="act_ir_audit_log"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_ir_audit_log_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="ir_audit_log_view_form"/>
+            <field name="act_window" ref="act_ir_audit_log"/>
+        </record>
+        <record model="ir.model.access" id="access_ir_audit_log">
+            <field name="model" search="[('model', '=', 'ir.audit.log')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <!-- Menus -->
+
+        <menuitem action="act_ir_audit_log" id="menu_ir_audit_log"
+            parent="res.menu_res"/>
+    </data>
+</tryton>
