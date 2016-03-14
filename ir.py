@@ -105,7 +105,10 @@ class AuditLog(ModelSQL, ModelView):
             if not issubclass(Class, ModelSQL) or Class.table_query():
                 continue
             table = Class.__table__()
-            columns = cls.get_common_columns(table, model.model, lenght, i)
+            if Class._history:
+                table = Class.__table_history__()
+            columns = cls.get_common_columns(table, model.model, lenght, i,
+                Class._history)
             queries.append(table.select(*(columns +
                         cls.get_create_columns(table)),
                     where=table.write_date == Null))
@@ -129,25 +132,30 @@ class AuditLog(ModelSQL, ModelView):
                 queries.append(table.select(*(columns +
                             cls.get_write_columns(table)),
                         where=table.write_date != Null))
+        sql, params = Union(*queries)
         return Union(*queries)
 
     def get_changes(self, name):
         pool = Pool()
         Field = pool.get('ir.model.field')
         Class = pool.get(self.model.__name__)
-        _datetime = self.date - timedelta(seconds=1, microseconds=0)
+        _datetime = self.date - timedelta(microseconds=1)
         changes = []
+        if self.type != 'write':
+            return ''
         with Transaction().set_context(_datetime=_datetime):
             history_model = Class(self.model.id)
         for field in Field.search([('model.model', '=', self.model.__name__)]):
             if field.name in self._changes_excluded_fields:
                 continue
-            if field.ttype == 'One2Many' or field.ttype == 'Many2Many2':
+            if field.ttype == 'one2many' or field.ttype == 'many2many':
                 continue
-            old_value = getattr(history_model, field.name)
+            if field.name not in Class._fields:
+                continue
             new_value = getattr(self.model, field.name)
+            old_value = getattr(history_model, field.name)
             if old_value != new_value:
-                if field.ttype == 'Many2One' or field.ttype == 'selection':
+                if field.ttype == 'many2one' or field.ttype == 'reference':
                     old_value = old_value.rec_name
                     new_value = new_value.rec_name
                 changes.append('%s: %s -> %s' % (
