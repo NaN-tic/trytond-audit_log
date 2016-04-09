@@ -156,8 +156,8 @@ class AuditLog(ModelSQL, ModelView):
             old_value = getattr(history_model, field.name)
             if old_value != new_value:
                 if field.ttype == 'many2one' or field.ttype == 'reference':
-                    old_value = old_value.rec_name
-                    new_value = new_value.rec_name
+                    old_value = old_value and old_value.rec_name or ''
+                    new_value = new_value and new_value.rec_name or ''
                 changes.append('%s: %s -> %s' % (
                         field.field_description, old_value, new_value))
         return '\n'.join(changes)
