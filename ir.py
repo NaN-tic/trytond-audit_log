@@ -185,10 +185,8 @@ class AuditLog(ModelView):
         keys = ['history', 'model', 'record', 'type_', 'user', 'date']
         cursor.execute(*Union(*queries))
         for res in cursor.fetchall():
-            print "-------", res
             audit_log = dict(zip(keys, res))
             audit_log['changes'] = cls.get_changes(audit_log)
-            print "---", audit_log
             result.append(audit_log)
 
         res = []
