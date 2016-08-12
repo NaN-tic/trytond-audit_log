@@ -2,6 +2,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:ir.audit.log.type:"
+msgid "The type of the Audit Log Type must be unique."
+msgstr "El tipo de evento tiene que ser único."
+
 msgctxt "field:ir.audit.log,changes:"
 msgid "Changes"
 msgstr "Cambios"
@@ -87,12 +91,16 @@ msgid "ID"
 msgstr "Identificador"
 
 msgctxt "field:ir.audit.log.type,name:"
-msgid "Event Type"
+msgid "Name"
 msgstr "Tipo evento"
 
 msgctxt "field:ir.audit.log.type,rec_name:"
 msgid "Name"
-msgstr "Nombre"
+msgstr "Tipo evento"
+
+msgctxt "field:ir.audit.log.type,type_:"
+msgid "Event Type"
+msgstr "Tipo evento"
 
 msgctxt "field:ir.audit.log.type,write_date:"
 msgid "Write Date"
@@ -162,6 +170,18 @@ msgctxt "model:ir.audit.log.type,name:"
 msgid "Audit Log Type"
 msgstr ""
 
+msgctxt "model:ir.audit.log.type,name:audit_log_type_create"
+msgid "Create"
+msgstr "Creado"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_delete"
+msgid "Delete"
+msgstr "Eliminado"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_write"
+msgid "Write"
+msgstr "Modificado"
+
 msgctxt "model:ir.ui.menu,name:"
 msgid "Audit Log"
 msgstr "Registro Auditoria"
@@ -178,15 +198,15 @@ msgctxt "selection:ir.audit.log.open.list,output_format:"
 msgid "XLS"
 msgstr "XLS"
 
-msgctxt "selection:ir.audit.log.type,name:"
+msgctxt "selection:ir.audit.log.type,type_:"
 msgid "Create"
 msgstr "Creado"
 
-msgctxt "selection:ir.audit.log.type,name:"
+msgctxt "selection:ir.audit.log.type,type_:"
 msgid "Delete"
 msgstr "Eliminado"
 
-msgctxt "selection:ir.audit.log.type,name:"
+msgctxt "selection:ir.audit.log.type,type_:"
 msgid "Write"
 msgstr "Modificado"
 
@@ -228,4 +248,4 @@ msgstr "Cancelar"
 
 msgctxt "wizard_button:ir.audit.log.open,start,open_:"
 msgid "Open"
-msgstr "Pendiente"
+msgstr "Abrir"

@@ -4,13 +4,16 @@ copyright notices and license terms. -->
 <tryton>
     <data grouped="1">
         <record model="ir.audit.log.type" id="audit_log_type_create">
-            <field name="name">create</field>
+            <field name="name">Create</field>
+            <field name="type_">create</field>
         </record>
         <record model="ir.audit.log.type" id="audit_log_type_write">
-            <field name="name">write</field>
+            <field name="name">Write</field>
+            <field name="type_">write</field>
         </record>
         <record model="ir.audit.log.type" id="audit_log_type_delete">
-            <field name="name">delete</field>
+            <field name="name">Delete</field>
+            <field name="type_">delete</field>
         </record>
     </data>
     <data>
@@ -30,6 +33,11 @@ copyright notices and license terms. -->
             <field name="model">ir.audit.log</field>
             <field name="type">tree</field>
             <field name="name">audit_log_tree</field>
+        </record>
+        <record model="ir.ui.view" id="audit_log_view_form">
+            <field name="model">ir.audit.log</field>
+            <field name="type">form</field>
+            <field name="name">audit_log_form</field>
         </record>
 
         <record model="ir.action.report" id="report_audit_log">

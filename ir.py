@@ -20,11 +20,20 @@ class AuditLogType(ModelSQL, ModelView):
     'Audit Log Type'
     __name__ = 'ir.audit.log.type'
 
-    name = fields.Selection([
+    name = fields.Char('Name', required=True, translate=True)
+    type_ = fields.Selection([
             ('create', 'Create'),
             ('write', 'Write'),
             ('delete', 'Delete'),
-            ], 'Event Type')
+            ], 'Event Type', required=True)
+
+    @classmethod
+    def __setup__(cls):
+        super(AuditLogType, cls).__setup__()
+        cls._sql_constraints = [
+            ('type_uniq', 'UNIQUE(type_)',
+             'The type of the Audit Log Type must be unique.')
+        ]
 
 
 class AuditLog(ModelView):
@@ -54,6 +63,7 @@ class AuditLog(ModelView):
         columns = [
             Literal(history).as_('history'),
             Literal(model.id).as_('model'),
+            Literal(model.rec_name).as_('model.rec_name'),
             Concat(model.model, Concat(',', Cast(table.id,
                         reference_type))).as_('record'),
             ]
@@ -63,10 +73,12 @@ class AuditLog(ModelView):
     def get_create_columns(cls, table):
         pool = Pool()
         Type = pool.get('ir.audit.log.type')
-        type_ = Type.search(['name', '=', 'create'])
+        type_ = Type.search(['type_', '=', 'create'])
         type_ = type_ and type_[0] or None
         datetime = cls.date.sql_type().base
-        return [Literal(type_.id).as_('type_'),
+        return [
+            Literal(type_.id).as_('type_'),
+            Literal(type_.rec_name).as_('type_.rec_name'),
             table.create_uid.as_('user'),
             Cast(DateTrunc('seconds', table.create_date), datetime).as_(
                 'date'),
@@ -76,10 +88,12 @@ class AuditLog(ModelView):
     def get_write_columns(cls, table):
         pool = Pool()
         Type = pool.get('ir.audit.log.type')
-        type_ = Type.search(['name', '=', 'write'])
+        type_ = Type.search(['type_', '=', 'write'])
         type_ = type_ and type_[0] or None
         datetime = cls.date.sql_type().base
-        return [Literal(type_.id).as_('type_'),
+        return [
+            Literal(type_.id).as_('type_'),
+            Literal(type_.rec_name).as_('type_.rec_name'),
             table.write_uid.as_('user'),
             Cast(DateTrunc('seconds', table.write_date), datetime).as_('date'),
             ]
@@ -88,10 +102,12 @@ class AuditLog(ModelView):
     def get_delete_columns(cls, table):
         pool = Pool()
         Type = pool.get('ir.audit.log.type')
-        type_ = Type.search(['name', '=', 'delete'])
+        type_ = Type.search(['type_', '=', 'delete'])
         type_ = type_ and type_[0] or None
         datetime = cls.date.sql_type().base
-        return [Literal(type_.id).as_('type_'),
+        return [
+            Literal(type_.id).as_('type_'),
+            Literal(type_.rec_name).as_('type_.rec_name'),
             table.write_uid.as_('user'),
             Cast(DateTrunc('seconds', table.write_date), datetime).as_('date'),
             ]
@@ -101,6 +117,7 @@ class AuditLog(ModelView):
         pool = Pool()
         Type = pool.get('ir.audit.log.type')
         Model = pool.get('ir.model')
+        User = pool.get('res.user')
         cursor = Transaction().cursor
 
         types = []
@@ -113,6 +130,7 @@ class AuditLog(ModelView):
             domain.append(
                 ('id', 'in', [m.id for m in start.models])
                 )
+
         for model in Model.search(domain):
             if model.model == cls.__name__:
                 continue
@@ -182,12 +200,26 @@ class AuditLog(ModelView):
             return [{}]
         sql, values = Union(*queries)
         result = []
-        keys = ['history', 'model', 'record', 'type_', 'user', 'date']
+        keys = ['history', 'model', 'model.rec_name', 'record', 'type_', 'type_.rec_name', 'user', 'date']
         cursor.execute(*Union(*queries))
+
         for res in cursor.fetchall():
             audit_log = dict(zip(keys, res))
-            audit_log['changes'] = cls.get_changes(audit_log)
+            user = audit_log.get('user')
+            if user:
+                audit_log['user.rec_name']= User(user).rec_name
+            record = (audit_log.get('record') and
+                audit_log['record'].split(',') or [])
+            if record and len(record) == 2:
+                Model = pool.get(record[0])
+                try:
+                    record = Model(record[1]).rec_name
+                except:
+                    record = record[1]
+                audit_log['record.rec_name']= record
             result.append(audit_log)
+
+        cls.get_changes(result)
 
         res = []
         if start.changes:
@@ -197,40 +229,47 @@ class AuditLog(ModelView):
         return start.changes and res or result
 
     @staticmethod
-    def get_changes(res):
+    def get_changes(result):
         pool = Pool()
         Field = pool.get('ir.model.field')
         Type = pool.get('ir.audit.log.type')
-        record = res.get('record') and res['record'].split(',') or []
-        if not record or len(record) != 2:
-            return ''
-        Model = pool.get(record[0])
-        record = Model(record[1])
-        Class = pool.get(record.__name__)
-        _datetime = res['date'] - timedelta(microseconds=1)
-        changes = []
-        type_ = Type(res['type_'])
-        if type_.name != 'write':
-            return ''
-        with Transaction().set_context(_datetime=_datetime):
-            history_model = Class(record.id)
-        for field in Field.search([('model.model', '=', record.__name__)]):
-            if field.ttype == 'one2many' or field.ttype == 'many2many':
+
+        fields_ = {}
+        for audit_log in result:
+            type_ = Type(audit_log['type_'])
+            record = (audit_log.get('record') and
+                audit_log['record'].split(',') or [])
+            if (not audit_log['history'] or type_.type_ != 'write' or
+                not record or len(record) != 2):
+                audit_log['changes'] = ''
                 continue
-            if field.name not in Class._fields:
-                continue
-            try:
-                new_value = getattr(record, field.name)
-                old_value = getattr(history_model, field.name)
-            except:
-                continue
-            if old_value != new_value:
-                if field.ttype == 'many2one' or field.ttype == 'reference':
-                    old_value = old_value and old_value.rec_name or ''
-                    new_value = new_value and new_value.rec_name or ''
-                changes.append('%s: %s -> %s' % (
-                        field.field_description, old_value, new_value))
-        return '\n'.join(changes)
+
+            Model = pool.get(record[0])
+            record = Model(record[1])
+            Class = pool.get(record.__name__)
+            _datetime = audit_log['date'] - timedelta(microseconds=1)
+            changes = []
+
+            with Transaction().set_context(_datetime=_datetime):
+                history_model = Class(record.id)
+
+            for field in Field.search([('model.model', '=', record.__name__)]):
+                if field.ttype == 'one2many' or field.ttype == 'many2many':
+                    continue
+                if field.name not in Class._fields:
+                    continue
+                try:
+                    new_value = getattr(record, field.name)
+                    old_value = getattr(history_model, field.name)
+                except:
+                    continue
+                if old_value != new_value:
+                    if field.ttype == 'many2one' or field.ttype == 'reference':
+                        old_value = old_value and old_value.rec_name or ''
+                        new_value = new_value and new_value.rec_name or ''
+                    changes.append('%s: %s -> %s' % (
+                            field.field_description, old_value, new_value))
+            audit_log['changes'] = '\n'.join(changes)
 
 
 class OpenAuditLogStart(ModelView):
@@ -246,7 +285,7 @@ class OpenAuditLogStart(ModelView):
 
     @staticmethod
     def default_start_date():
-        return datetime.now() - timedelta(days=5)
+        return datetime.now() - timedelta(days=1)
 
     @staticmethod
     def default_end_date():
@@ -261,7 +300,8 @@ class OpenAuditLogList(ModelView):
     'Open Audit Log Tree'
     __name__ = 'ir.audit.log.open.list'
 
-    audit_logs = fields.One2Many('ir.audit.log', None, 'Audit Log', readonly=True)
+    audit_logs = fields.One2Many('ir.audit.log', None, 'Audit Log',
+        readonly=True)
     output_format = fields.Selection([
             ('pdf', 'PDF'),
             ('xls', 'XLS'),
@@ -272,7 +312,8 @@ class OpenAuditLogList(ModelView):
         pool = Pool()
         AuditLog = pool.get('ir.audit.log')
 
-        audit_logs = AuditLog.get_logs(start)
+        with Transaction().set_user(0, set_context=True):
+            audit_logs = AuditLog.get_logs(start)
 
         return {
             'audit_logs': audit_logs,

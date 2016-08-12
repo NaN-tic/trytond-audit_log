@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<form string="Audit Log" col="6">
+    <label name="date"/>
+    <field name="date"/>
+    <label name="user"/>
+    <field name="user"/>
+    <label name="type_"/>
+    <field name="type_"/>
+    <label name="model"/>
+    <field name="model"/>
+    <label name="record"/>
+    <field name="record"/>
+    <label name="history"/>
+    <field name="history"/>
+    <separator name="changes" colspan="6"/>
+    <field name="changes" colspan="6"/>
+</form>

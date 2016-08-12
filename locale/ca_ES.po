@@ -2,6 +2,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:ir.audit.log.type:"
+msgid "The type of the Audit Log Type must be unique."
+msgstr "El tipus d'event ha de ser únic."
+
 msgctxt "field:ir.audit.log,changes:"
 msgid "Changes"
 msgstr "Canvis"
@@ -87,12 +91,16 @@ msgid "ID"
 msgstr "Identificador"
 
 msgctxt "field:ir.audit.log.type,name:"
-msgid "Event Type"
+msgid "Name"
 msgstr "Tipus Event"
 
 msgctxt "field:ir.audit.log.type,rec_name:"
 msgid "Name"
-msgstr "Nom"
+msgstr "Tipus Event"
+
+msgctxt "field:ir.audit.log.type,type_:"
+msgid "Event Type"
+msgstr "Tipus d'event"
 
 msgctxt "field:ir.audit.log.type,write_date:"
 msgid "Write Date"
@@ -162,6 +170,18 @@ msgctxt "model:ir.audit.log.type,name:"
 msgid "Audit Log Type"
 msgstr ""
 
+msgctxt "model:ir.audit.log.type,name:audit_log_type_create"
+msgid "Create"
+msgstr "Creat"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_delete"
+msgid "Delete"
+msgstr "Eliminat"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_write"
+msgid "Write"
+msgstr "Modificat"
+
 msgctxt "model:ir.ui.menu,name:"
 msgid "Audit Log"
 msgstr "Registre auditoria"
@@ -178,15 +198,15 @@ msgctxt "selection:ir.audit.log.open.list,output_format:"
 msgid "XLS"
 msgstr "XLS"
 
-msgctxt "selection:ir.audit.log.type,name:"
+msgctxt "selection:ir.audit.log.type,type_:"
 msgid "Create"
 msgstr "Creat"
 
-msgctxt "selection:ir.audit.log.type,name:"
+msgctxt "selection:ir.audit.log.type,type_:"
 msgid "Delete"
 msgstr "Eliminat"
 
-msgctxt "selection:ir.audit.log.type,name:"
+msgctxt "selection:ir.audit.log.type,type_:"
 msgid "Write"
 msgstr "Modificat"
 
