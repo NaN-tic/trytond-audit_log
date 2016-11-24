@@ -363,6 +363,8 @@ class OpenAuditLog(Wizard):
         Type = pool.get('ir.audit.log.type')
         Model = pool.get('ir.model')
         records = []
+        language = User(Transaction().user).language
+        lang = language.code if language else 'en_US'
         for audit_log in self.open_.audit_logs:
             records.append({
                     'user': User(audit_log.user).name,
@@ -372,14 +374,13 @@ class OpenAuditLog(Wizard):
                     'record': (audit_log.record and audit_log.record.rec_name
                         or ''),
                     'changes': audit_log.changes,
-                    'lang': User(audit_log.user).language.code,
+                    'lang': lang,
                     })
 
         data = {
             'records': records,
             'output_format': self.open_.output_format,
             }
-
         return action, data
 
     def transition_print_(self):
