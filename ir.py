@@ -1,6 +1,7 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from datetime import datetime, timedelta
+from operator import itemgetter
 from sql import Literal, Null, Cast, Union
 from sql.operators import Concat
 from sql.functions import DateTrunc
@@ -314,7 +315,8 @@ class OpenAuditLogList(ModelView):
             audit_logs = AuditLog.get_logs(start)
 
         return {
-            'audit_logs': audit_logs,
+            'audit_logs': sorted(audit_logs, key=itemgetter('date'),
+                reverse=True),
             'output_format': 'pdf',
             }
 
