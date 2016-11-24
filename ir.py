@@ -117,7 +117,7 @@ class AuditLog(ModelView):
         pool = Pool()
         Model = pool.get('ir.model')
         User = pool.get('res.user')
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor()
 
         types = []
         domain = []
