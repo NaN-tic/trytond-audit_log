@@ -115,7 +115,6 @@ class AuditLog(ModelView):
     @classmethod
     def get_logs(cls, start):
         pool = Pool()
-        Type = pool.get('ir.audit.log.type')
         Model = pool.get('ir.model')
         User = pool.get('res.user')
         cursor = Transaction().cursor
@@ -234,7 +233,6 @@ class AuditLog(ModelView):
         Field = pool.get('ir.model.field')
         Type = pool.get('ir.audit.log.type')
 
-        fields_ = {}
         for audit_log in result:
             type_ = Type(audit_log['type_'])
             record = (audit_log.get('record') and
