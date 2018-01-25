@@ -197,7 +197,7 @@ class AuditLog(ModelView):
                             cls.get_write_columns(table)),
                         where=where))
         if not queries:
-            return [{}]
+            return []
         sql, values = Union(*queries)
         result = []
         keys = ['history', 'model', 'model.rec_name', 'record', 'type_', 'type_.rec_name', 'user', 'date']
