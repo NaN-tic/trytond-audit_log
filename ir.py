@@ -200,7 +200,8 @@ class AuditLog(ModelView):
             return []
         sql, values = Union(*queries)
         result = []
-        keys = ['history', 'model', 'model.rec_name', 'record', 'type_', 'type_.rec_name', 'user', 'date']
+        keys = ['history', 'model', 'model.rec_name', 'record', 'type_',
+            'type_.rec_name', 'user', 'date']
         cursor.execute(*Union(*queries))
 
         for res in cursor.fetchall():
