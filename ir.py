@@ -6,7 +6,7 @@ from sql import Literal, Null, Cast, Union
 from sql.operators import Concat
 from sql.functions import DateTrunc
 
-from trytond.model import ModelSQL, ModelView, fields
+from trytond.model import ModelSQL, ModelView, fields, Unique
 from trytond.wizard import Wizard, StateView, StateAction, Button
 from trytond.pool import Pool
 from trytond.pyson import Eval
@@ -31,10 +31,11 @@ class AuditLogType(ModelSQL, ModelView):
     @classmethod
     def __setup__(cls):
         super(AuditLogType, cls).__setup__()
-        cls._sql_constraints = [
-            ('type_uniq', 'UNIQUE(type_)',
-             'The type of the Audit Log Type must be unique.')
-        ]
+        t = cls.__table__()
+        cls._sql_constraints += [
+            ('type_uniq', Unique(t, t.type_),
+                'The type of the Audit Log Type must be unique.'),
+            ]
 
 
 class AuditLog(ModelView):
@@ -290,10 +291,6 @@ class OpenAuditLogStart(ModelView):
     @staticmethod
     def default_end_date():
         return datetime.now()
-
-    @staticmethod
-    def default_company():
-        return Transaction().context.get('company')
 
 
 class OpenAuditLogList(ModelView):
