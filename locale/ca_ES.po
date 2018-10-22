@@ -4,7 +4,7 @@ msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "error:ir.audit.log.type:"
 msgid "The type of the Audit Log Type must be unique."
-msgstr "El tipus d'event ha de ser únic."
+msgstr "El Tipus event ha de ser únic."
 
 msgctxt "field:ir.audit.log,changes:"
 msgid "Changes"
@@ -20,7 +20,7 @@ msgstr "Historial"
 
 msgctxt "field:ir.audit.log,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:ir.audit.log,model:"
 msgid "Model"
@@ -32,7 +32,7 @@ msgstr "Registre"
 
 msgctxt "field:ir.audit.log,type_:"
 msgid "Event Type"
-msgstr "Tipus d'event"
+msgstr "Tipus event"
 
 msgctxt "field:ir.audit.log,user:"
 msgid "User"
@@ -44,7 +44,7 @@ msgstr "Registre auditoria"
 
 msgctxt "field:ir.audit.log.open.list,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:ir.audit.log.open.list,output_format:"
 msgid "Output Format"
@@ -56,11 +56,11 @@ msgstr "Canvis"
 
 msgctxt "field:ir.audit.log.open.start,end_date:"
 msgid "End Date & Hour"
-msgstr "Fi Data i Hora"
+msgstr "Fi data i hora"
 
 msgctxt "field:ir.audit.log.open.start,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:ir.audit.log.open.start,models:"
 msgid "Models"
@@ -68,7 +68,7 @@ msgstr "Models"
 
 msgctxt "field:ir.audit.log.open.start,start_date:"
 msgid "Start Date & Hour"
-msgstr "Inicia Data i Hora"
+msgstr "Inicia data i hora"
 
 msgctxt "field:ir.audit.log.open.start,types:"
 msgid "Event Types"
@@ -88,19 +88,19 @@ msgstr "Usuari de creació"
 
 msgctxt "field:ir.audit.log.type,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:ir.audit.log.type,name:"
 msgid "Name"
-msgstr "Tipus Event"
+msgstr "Tipus event"
 
 msgctxt "field:ir.audit.log.type,rec_name:"
 msgid "Name"
-msgstr "Tipus Event"
+msgstr "Tipus event"
 
 msgctxt "field:ir.audit.log.type,type_:"
 msgid "Event Type"
-msgstr "Tipus d'event"
+msgstr "Tipus event"
 
 msgctxt "field:ir.audit.log.type,write_date:"
 msgid "Write Date"
@@ -120,11 +120,11 @@ msgstr "Canvis"
 
 msgctxt "jasper:ir.audit.log.report:"
 msgid "Date & Hour"
-msgstr "Data i Hora"
+msgstr "Data i hora"
 
 msgctxt "jasper:ir.audit.log.report:"
 msgid "Event Type"
-msgstr "Tipus d'event"
+msgstr "Tipus event"
 
 msgctxt "jasper:ir.audit.log.report:"
 msgid "Model"
@@ -160,15 +160,15 @@ msgstr "Registre auditoria"
 
 msgctxt "model:ir.audit.log.open.list,name:"
 msgid "Open Audit Log Tree"
-msgstr ""
+msgstr "Obre Audit Log Tree"
 
 msgctxt "model:ir.audit.log.open.start,name:"
 msgid "Open Audit Log Start"
-msgstr ""
+msgstr "Obre Audit Log Start"
 
 msgctxt "model:ir.audit.log.type,name:"
 msgid "Audit Log Type"
-msgstr ""
+msgstr "Tipus registre auditoria"
 
 msgctxt "model:ir.audit.log.type,name:audit_log_type_create"
 msgid "Create"
