@@ -125,7 +125,7 @@ class AuditLog(ModelView):
         domain = []
         queries = []
         for t in start.types:
-            types.append(t.name)
+            types.append(t.type_)
 
         if start.models:
             domain.append(
