@@ -110,35 +110,35 @@ msgctxt "field:ir.audit.log.type,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Audit Log"
 msgstr "Registre auditoria"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Changes"
 msgstr "Canvis"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Date & Hour"
 msgstr "Data i hora"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Event Type"
 msgstr "Tipus event"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Model"
 msgstr "Model"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Page"
 msgstr "Pàgina"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "Record"
 msgstr "Registre"
 
-msgctxt "jasper:ir.audit.log.report:"
+msgctxt "report:ir.audit.log.report:"
 msgid "User"
 msgstr "Usuari"
 
