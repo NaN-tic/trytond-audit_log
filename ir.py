@@ -346,7 +346,7 @@ class OpenAuditLog(Wizard):
             ])
     open_ = StateView('ir.audit.log.open.list',
         'audit_log.audit_log_open_list_view_form', [
-            Button('Change', 'start', 'tryton-go-previous'),
+            Button('Change', 'start', 'tryton-back'),
             Button('Print', 'print_', 'tryton-print'),
             Button('Close', 'end', 'tryton-close'),
             ])
