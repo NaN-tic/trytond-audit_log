@@ -45,6 +45,7 @@ copyright notices and license terms. -->
             <field name="report_name">ir.audit.log.report</field>
             <field name="report">audit_log/audit_log.jrxml</field>
             <field name="extension">pdf</field>
+            <field name="template_extension">jrxml</field>
         </record>
 
         <record model="ir.action.wizard" id="wizard_audit_log_open">
