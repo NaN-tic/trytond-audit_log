@@ -17,6 +17,54 @@ copyright notices and license terms. -->
         </record>
     </data>
     <data>
+        <menuitem name="Audit Log" id="menu_audit_log_main" parent="ir.menu_administration"/>
+
+        <!-- audit.log.notification -->
+        <record model="ir.ui.view" id="audit_log_notification_form_view">
+            <field name="model">ir.audit.log.notification</field>
+            <field name="type">form</field>
+            <field name="name">audit_log_notification_form</field>
+        </record>
+        <record model="ir.ui.view" id="audit_log_notification_tree_view">
+            <field name="model">ir.audit.log.notification</field>
+            <field name="type">tree</field>
+            <field name="name">audit_log_notification_tree</field>
+        </record>
+
+        <record model="ir.action.act_window" id="act_audit_log_notification_form">
+            <field name="name">Audit Log Notification</field>
+            <field name="res_model">ir.audit.log.notification</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_audit_log_notification_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="audit_log_notification_tree_view"/>
+            <field name="act_window" ref="act_audit_log_notification_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_audit_log_notification_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="audit_log_notification_form_view"/>
+            <field name="act_window" ref="act_audit_log_notification_form"/>
+        </record>
+        <menuitem id="menu_audit_log_notification" parent="menu_audit_log_main"
+            action="act_audit_log_notification_form"/>
+
+        <record model="ir.model.access" id="access_audit_log_notification">
+            <field name="model" search="[('model', '=', 'ir.audit.log.notification')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_audit_log_notification_admin">
+            <field name="model" search="[('model', '=', 'ir.audit.log.notification')]"/>
+            <field name="group" ref="res.group_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <!-- audit.log report -->
         <record model="ir.ui.view" id="audit_log_open_start_view_form">
             <field name="model">ir.audit.log.open.start</field>
             <field name="type">form</field>

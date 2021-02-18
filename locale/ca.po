@@ -2,10 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:ir.audit.log.type:"
-msgid "The type of the Audit Log Type must be unique."
-msgstr "El tipus d'event ha de ser únic."
-
 msgctxt "field:ir.audit.log,changes:"
 msgid "Changes"
 msgstr "Canvis"
@@ -17,10 +13,6 @@ msgstr "Data i Hora"
 msgctxt "field:ir.audit.log,history:"
 msgid "History"
 msgstr "Historial"
-
-msgctxt "field:ir.audit.log,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:ir.audit.log,model:"
 msgid "Model"
@@ -38,13 +30,33 @@ msgctxt "field:ir.audit.log,user:"
 msgid "User"
 msgstr "Usuari"
 
+msgctxt "field:ir.audit.log.notification,model_fields:"
+msgid "Fields"
+msgstr "Camps"
+
+msgctxt "field:ir.audit.log.notification,name:"
+msgid "Name"
+msgstr "Tipus event"
+
+msgctxt "field:ir.audit.log.notification,server:"
+msgid "Server"
+msgstr "Servidor"
+
+msgctxt "field:ir.audit.log.notification,to:"
+msgid "To"
+msgstr "Per"
+
+msgctxt "field:ir.audit.log.notification-ir.model.field,model_field:"
+msgid "Field"
+msgstr "Camp"
+
+msgctxt "field:ir.audit.log.notification-ir.model.field,notification:"
+msgid "Notification"
+msgstr "Notificació"
+
 msgctxt "field:ir.audit.log.open.list,audit_logs:"
 msgid "Audit Log"
 msgstr "Registre auditoria"
-
-msgctxt "field:ir.audit.log.open.list,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:ir.audit.log.open.list,output_format:"
 msgid "Output Format"
@@ -57,10 +69,6 @@ msgstr "Canvis"
 msgctxt "field:ir.audit.log.open.start,end_date:"
 msgid "End Date & Hour"
 msgstr "Fi data i hora"
-
-msgctxt "field:ir.audit.log.open.start,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:ir.audit.log.open.start,models:"
 msgid "Models"
@@ -78,23 +86,7 @@ msgctxt "field:ir.audit.log.open.start,users:"
 msgid "Users"
 msgstr "Usuaris"
 
-msgctxt "field:ir.audit.log.type,create_date:"
-msgid "Create Date"
-msgstr "Data de creació"
-
-msgctxt "field:ir.audit.log.type,create_uid:"
-msgid "Create User"
-msgstr "Usuari de creació"
-
-msgctxt "field:ir.audit.log.type,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:ir.audit.log.type,name:"
-msgid "Name"
-msgstr "Tipus event"
-
-msgctxt "field:ir.audit.log.type,rec_name:"
 msgid "Name"
 msgstr "Tipus event"
 
@@ -102,13 +94,101 @@ msgctxt "field:ir.audit.log.type,type_:"
 msgid "Event Type"
 msgstr "Tipus event"
 
-msgctxt "field:ir.audit.log.type,write_date:"
-msgid "Write Date"
-msgstr "Data modificación"
+msgctxt "model:ir.action,name:"
+msgid "Audit Log"
+msgstr "Registre auditoria"
 
-msgctxt "field:ir.audit.log.type,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
+msgctxt "model:ir.action,name:act_audit_log_notification_form"
+msgid "Audit Log Notification"
+msgstr "Notificació registre auditoria"
+
+msgctxt "model:ir.action,name:report_audit_log"
+msgid "Report Audit Log"
+msgstr "Informe Registre auditoria"
+
+msgctxt "model:ir.action,name:wizard_audit_log_open"
+msgid "Audit Log"
+msgstr "Registre auditoria"
+
+msgctxt "model:ir.audit.log,name:"
+msgid "Audit Log"
+msgstr "Registre auditoria"
+
+msgctxt "model:ir.audit.log.notification,name:"
+msgid "Audit Log Notification"
+msgstr "Notificació registre auditoria"
+
+msgctxt "model:ir.audit.log.notification-ir.model.field,name:"
+msgid "Audit Log Notification - Field"
+msgstr "Notificació registre auditoria - Camp"
+
+msgctxt "model:ir.audit.log.open.list,name:"
+msgid "Open Audit Log Tree"
+msgstr "Obre Audit Log Tree"
+
+msgctxt "model:ir.audit.log.open.start,name:"
+msgid "Open Audit Log Start"
+msgstr "Obre Audit Log Start"
+
+msgctxt "model:ir.audit.log.type,name:"
+msgid "Audit Log Type"
+msgstr "Tipus registre auditoria"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_create"
+msgid "Create"
+msgstr "Creat"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_delete"
+msgid "Delete"
+msgstr "Eliminat"
+
+msgctxt "model:ir.audit.log.type,name:audit_log_type_write"
+msgid "Write"
+msgstr "Modificat"
+
+msgctxt "model:ir.message,text:msg_by"
+msgid "by"
+msgstr "per"
+
+msgctxt "model:ir.message,text:msg_since"
+msgid "since"
+msgstr "desde"
+
+msgctxt "model:ir.message,text:msg_current_value"
+msgid "Current Value"
+msgstr "Valor actual"
+
+msgctxt "model:ir.message,text:msg_email_field"
+msgid "Field"
+msgstr "Camp"
+
+msgctxt "model:ir.message,text:msg_email_subject"
+msgid "%(database)s. Changes in %(notification)s"
+msgstr "%(database)s. Canvis a %(notification)s"
+
+msgctxt "model:ir.message,text:msg_new"
+msgid "New"
+msgstr "Nou"
+
+msgctxt "model:ir.message,text:msg_old_value"
+msgid "Old Value"
+msgstr "Valor anterior"
+
+msgctxt "model:ir.ui.menu,name:"
+msgid "Audit Log"
+msgstr "Registre auditoria"
+
+msgctxt "model:ir.ui.menu,name:menu_audit_log"
+msgid "Audit Log"
+msgstr "Registre auditoria"
+
+msgctxt "model:ir.ui.menu,name:menu_audit_log_main"
+msgid "Audit Log"
+msgstr "Registre auditoria"
+
+msgctxt "model:ir.ui.menu,name:menu_audit_log_notification"
+msgid "Audit Log Notification"
+msgstr "Notificació registre auditoria"
 
 msgctxt "report:ir.audit.log.report:"
 msgid "Audit Log"
@@ -142,54 +222,6 @@ msgctxt "report:ir.audit.log.report:"
 msgid "User"
 msgstr "Usuari"
 
-msgctxt "model:ir.action,name:"
-msgid "Audit Log"
-msgstr "Registre auditoria"
-
-msgctxt "model:ir.action,name:report_audit_log"
-msgid "Report Audit Log"
-msgstr "Informe Registre auditoria"
-
-msgctxt "model:ir.action,name:wizard_audit_log_open"
-msgid "Audit Log"
-msgstr "Registre auditoria"
-
-msgctxt "model:ir.audit.log,name:"
-msgid "Audit Log"
-msgstr "Registre auditoria"
-
-msgctxt "model:ir.audit.log.open.list,name:"
-msgid "Open Audit Log Tree"
-msgstr "Obre Audit Log Tree"
-
-msgctxt "model:ir.audit.log.open.start,name:"
-msgid "Open Audit Log Start"
-msgstr "Obre Audit Log Start"
-
-msgctxt "model:ir.audit.log.type,name:"
-msgid "Audit Log Type"
-msgstr "Tipus registre auditoria"
-
-msgctxt "model:ir.audit.log.type,name:audit_log_type_create"
-msgid "Create"
-msgstr "Creat"
-
-msgctxt "model:ir.audit.log.type,name:audit_log_type_delete"
-msgid "Delete"
-msgstr "Eliminat"
-
-msgctxt "model:ir.audit.log.type,name:audit_log_type_write"
-msgid "Write"
-msgstr "Modificat"
-
-msgctxt "model:ir.ui.menu,name:"
-msgid "Audit Log"
-msgstr "Registre auditoria"
-
-msgctxt "model:ir.ui.menu,name:menu_audit_log"
-msgid "Audit Log"
-msgstr "Registre auditoria"
-
 msgctxt "selection:ir.audit.log.open.list,output_format:"
 msgid "PDF"
 msgstr "PDF"
@@ -221,10 +253,6 @@ msgstr "Tots els models si està buit"
 msgctxt "view:ir.audit.log.open.start:"
 msgid "All Users if Empty"
 msgstr "Tots els usuaris si està buit"
-
-msgctxt "view:ir.audit.log.open.start:"
-msgid "Audit Log Filter"
-msgstr "Filtre Registre auditoria"
 
 msgctxt "view:ir.audit.log:"
 msgid "Audit Log"

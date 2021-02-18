@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data grouped="1">
+        <record model="ir.message" id="msg_email_subject">
+            <field name="text">%(database)s. Changes in %(notification)s</field>
+        </record>
+        <record model="ir.message" id="msg_email_field">
+            <field name="text">Field</field>
+        </record>
+        <record model="ir.message" id="msg_old_value">
+            <field name="text">Old Value</field>
+        </record>
+        <record model="ir.message" id="msg_current_value">
+            <field name="text">Current Value</field>
+        </record>
+        <record model="ir.message" id="msg_since">
+            <field name="text">since</field>
+        </record>
+        <record model="ir.message" id="msg_new">
+            <field name="text">New</field>
+        </record>
+        <record model="ir.message" id="msg_by">
+            <field name="text">by</field>
+        </record>
+    </data>
+</tryton>
