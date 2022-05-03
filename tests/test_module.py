@@ -6,7 +6,7 @@ from trytond.modules.company.tests import CompanyTestMixin
 from trytond.tests.test_tryton import ModuleTestCase
 
 
-class AuditLogTestCase(CompanyTestMixin, ModuleTestCase):
+class AuditLogTestCase(ModuleTestCase):
     'Test AuditLog module'
     module = 'audit_log'
 
